@@ -33,4 +33,4 @@ jobs:
       # Step 4: Run your linting, tests, or primary application script
       - name: Run Python Application
         run: |
-          python main.py
+          python rdrs.app.main 
