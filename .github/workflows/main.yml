@@ -26,8 +26,9 @@ jobs:
 
       # Step 3: Install all application requirements
       - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
+        run: python -m venv venv
+          source venv/bin/activate  # Use 'venv\Scripts\activate' if your self-hosted runner is Windows
+          pip install --upgrade pip|
           if ( -f requirements.txt ); then pip install -r requirements.txt; fi
 
       # Step 4: Run your linting, tests, or primary application script
