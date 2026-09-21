@@ -1,7 +1,7 @@
 import os
 import pytest
-from rdrs.app.core.entropy import calculate_shannon_entropy
-from rdrs.app.core.config import load_config
+from core.entropy import calculate_shannon_entropy
+from core.config import load_config
 
 def test_entropy_of_zero_file(tmp_path):
     empty_file = tmp_path / "empty.dat"
