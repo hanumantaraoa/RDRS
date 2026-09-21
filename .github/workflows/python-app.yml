@@ -39,7 +39,7 @@ jobs:
       id: read_config
       uses: step-security/action-read-yaml@v1
       with:
-      config: ${{ github.workspace }}/rdrs/config.yaml
+        config: ${{ github.workspace }}/rdrs/config.yaml
 
      #Step 3: Access and display loaded variables
     - name: Use values from YAML
