@@ -47,4 +47,4 @@ jobs:
           echo "The environment is: ${{ steps.read_config.outputs['environment'] }}"
           echo "The database host is: ${{ steps.read_config.outputs['database.host'] }}"
     - name:  run the app
-      run: background: python -m rdrs.app.main.py
+      run: python -m rdrs.app.main.py &
