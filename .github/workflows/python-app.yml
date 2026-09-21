@@ -43,5 +43,6 @@ jobs:
 
      #Step 3: Access and display loaded variables
     - name: Use values from YAML
-      run: echo "The environment is: ${{ steps.read_config.outputs['environment'] }}"
-      echo "The database host is: ${{ steps.read_config.outputs['database.hos
+      run: |
+          echo "The environment is: ${{ steps.read_config.outputs['environment'] }}"
+          echo "The database host is: ${{ steps.read_config.outputs['database.host'] }}"
