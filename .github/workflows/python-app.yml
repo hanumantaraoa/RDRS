@@ -8,7 +8,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+  workflow_dispatch: # Allows you to manually trigger the workflow from GitHub UI
+  
 permissions:
   contents: read
 
