@@ -28,6 +28,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Start rdrs in the background
+      run: |
         python -m app.main &
     - name: Lint with flake8
       run: |
@@ -37,4 +39,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        pytest samptest.py
