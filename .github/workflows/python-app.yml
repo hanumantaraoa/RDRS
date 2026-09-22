@@ -24,7 +24,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # Change to your preferred Python version
+          python-version: '3.11' # Change to your preferred Python version
 
       # Step 3: Install application dependencies
       # Good Practice: Upgrading pip and using a virtual environment or cache if necessary.
