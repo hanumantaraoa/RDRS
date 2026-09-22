@@ -18,8 +18,7 @@ jobs:
     # 'self-hosted' tells GitHub not to use its own VMs. 
     # Add custom labels like 'linux', 'windows', or 'production' if needed to target specific runners.
     runs-on: [self-hosted]
-    runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.10
