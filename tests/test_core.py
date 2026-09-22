@@ -1,7 +1,7 @@
 import os
 import pytest
-from .app.core.entropy.py import calculate_shannon_entropy
-from .app.core.config.py import load_config
+from "app/core/entropy.py" import calculate_shannon_entropy
+from "app/core/config.py" import load_config
 
 def test_entropy_of_zero_file(tmp_path):
     empty_file = tmp_path / "empty.dat"
