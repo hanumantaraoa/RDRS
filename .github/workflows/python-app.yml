@@ -17,7 +17,7 @@ jobs:
   run-app:
     # 'self-hosted' tells GitHub not to use its own VMs. 
     # Add custom labels like 'linux', 'windows', or 'production' if needed to target specific runners.
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
     
     steps:
     # Step 1: Pull the latest code from your repository onto the self-hosted machine
@@ -27,18 +27,26 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-    # Step 3: Install application dependencies
+    # Step 3: Install application dependencies and vitual environment
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        python -m venv .venv
+        source .venv/bin/activate
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    # Step 4: Checking code with flake
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    # Step 5: Run your Python application in the background
+    - name: Run Python Application
+      run: |
+         python app.main.py &
+    # Step 6: Test your Python application with test suite
     - name: Test with pytest
       run: |
         pytest
