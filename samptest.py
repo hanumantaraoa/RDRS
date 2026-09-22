@@ -1,7 +1,7 @@
 import os
 import secrets
 import string
-from pathlib import path
+from pathlib import Path
 
 # Combine letters, digits, and punctuation
 alphabet = string.ascii_letters + string.digits + string.punctuation
