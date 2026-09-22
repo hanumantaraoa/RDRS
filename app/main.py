@@ -16,7 +16,7 @@ from app.api.routes import router as api_router, init_api_session, get_db
 from app.dashboard.dashboard import get_dashboard_html
 
 # 1. Load Configurations (FR-1)
-config = load_config("rdrs/config.yaml")
+config = load_config("config.yaml")
 logger = setup_logger(config.system.log_file)
 
 # 2. Database Connection Initialization (FR-5)
