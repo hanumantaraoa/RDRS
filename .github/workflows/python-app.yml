@@ -1,4 +1,7 @@
-name: Run Python App on Self-Hosted Runner
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
 
 on:
   push:
@@ -6,35 +9,47 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch: # Allows you to manually trigger the workflow from GitHub UI
+permissions:
+  contents: read
 
 jobs:
+  jobs:
   run-app:
     # 'self-hosted' tells GitHub not to use its own VMs. 
     # Add custom labels like 'linux', 'windows', or 'production' if needed to target specific runners.
-    runs-on: [self-hosted] 
-
-    steps:
-      # Step 1: Pull the latest code from your repository onto the self-hosted machine
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      # Step 2: Use the pre-installed Python on your runner or set up a specific version.
-      # Note: 'actions/setup-python' works on self-hosted runners but requires internet access 
-      # to download toolcache versions if they are not already cached locally.
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11' # Change to your preferred Python version
-
-      # Step 3: Install application dependencies
+    runs-on: [self-hosted]
+ 
+ steps:
+     # Step 1: Pull the latest code from your repository onto the self-hosted machine
+    - name: Checkout Repository
+    - uses: actions/checkout@v4
+    # Step 2: Use the pre-installed Python on your runner or set up a specific version.
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    # Step 3: Install application dependencies
       # Good Practice: Upgrading pip and using a virtual environment or cache if necessary.
       # Because it's a self-hosted runner, dependencies persist unless you clean them up.
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      # Step 4: Run your Python application or its test suite
-      - name: Run Python Application
-        run: |
-          python app.main.py
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m venv .venv
+        source .venv/bin/activate
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    # Step 4: Checking code with flake
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    # Step 5: Run your Python application in the background
+    - name: Run Python Application
+      run: |
+         python app.main.py
+    # Step 6: Test your Python application with test suite
+    - name: Test with pytest
+      run: |
+        pytest
