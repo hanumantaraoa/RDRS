@@ -27,7 +27,7 @@ jobs:
 
       - name: Run Pytest
         run: |
-          pytest --cov=src --junitxml=pytest-report.xml
+          python -m pytest --cov=src --junitxml=pytest-report.xml /tests
         env:
           TEST_ENV: CI
           # Add any environment variables or safe mock-malware paths needed here
