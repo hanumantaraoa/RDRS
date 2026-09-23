@@ -40,9 +40,6 @@ jobs:
     - name: Test with pytest
       run: |
         python -m pytest
-  
-  # This job will pause and wait for a manual confirmation click
-  end-application:
-    needs: verify-request
-    runs-on: ubuntu-latest
-    environment: termination # Matches the environment name you created in GitHub
+     steps:
+      - name: Deploy Code
+        run: echo "Deploying to production after user click!"
