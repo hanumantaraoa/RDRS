@@ -38,13 +38,12 @@ jobs:
     - name: run RDRS
       run:  python -m app.main &
     - name: Run Pytest
-      run: |
-          python -m pytest --cov=src --junitxml=pytest-report.xml /tests        
+      run:  python -m pytest --cov=src --junitxml=pytest-report.xml /tests        
     - name: Upload Test Results
       uses: actions/upload-artifact@v4
-      if: always() # Ensures reports upload even if tests fail
-       with:
-       name: pytest-results
-       path: |
-            pytest-report.xml
-            htmlcov/
+      if:   always() # Ensures reports upload even if tests fail
+      with:
+          name: pytest-results
+          path: |
+              pytest-report.xml
+              htmlcov/
