@@ -14,7 +14,8 @@ permissions:
 jobs:
   build:
   runs-on: self-hosted
-steps:
+  
+  steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.11
       uses: actions/setup-python@v3
