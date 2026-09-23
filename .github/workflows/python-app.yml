@@ -40,10 +40,9 @@ jobs:
     - name: Test with pytest
       run: |
         python -m pytest tests/test_core.py
-    - name: Manual Checkout
-      run: |
-        git init
-        git remote add origin https://x-token-auth:${{ secrets.GITHUB_TOKEN }}@://github.com{{ github.repository }}.git
-        git fetch --depth 1 origin ${{ github.ref }}
-        git checkout FETCH_HEAD
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: false
 
+        
