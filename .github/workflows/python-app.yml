@@ -36,7 +36,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Run script in background (PowerShell)
       run: |
-        Start-Process python -m app.main -NoNewWindow
+        Start-Process python app.main -NoNewWindow
         Write-Host "Server started in the background!"
    
     - name: Test with pytest
