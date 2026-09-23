@@ -39,10 +39,17 @@ jobs:
       run:  python -m app.main  &  
     - name: Test with pytest
       run: |
-        python -m pytest tests/simulate_attack.py
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+        python -m pytest --cov=src --junitxml=pytest-report.xml /tests
+      env:
+           TEST_ENV: CI
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      if: always() # Ensures reports upload even if tests fail
       with:
-        persist-credentials: false
+          name: pytest-results
+          path: |
+            pytest-report.xml
+            htmlcov/
+         
 
         
