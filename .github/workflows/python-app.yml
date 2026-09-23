@@ -39,6 +39,6 @@ jobs:
       run:  python -m app.main  &  
     - name: Test with pytest
       run: |
-        python -m pytest
+        pytest
     - name: Pause Code
       run: python userinput
