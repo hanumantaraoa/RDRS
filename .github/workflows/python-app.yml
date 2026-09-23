@@ -41,4 +41,4 @@ jobs:
       run: |
         python -m pytest tests/test_core.py
     - name: Pause Code
-      run: python userinput
+      run: python userinput.py
