@@ -39,7 +39,7 @@ jobs:
       run:  python -m app.main  &  
     - name: Test with pytest
       run: |
-        python -m pytest tests/generate_payloads.py
+        python -m pytest tests/simulate_attack.py
     - name: Checkout Repository
       uses: actions/checkout@v4
       with:
