@@ -37,11 +37,13 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: run RDRS IN THE BACKGROUND
       run:  python -m app.main  &  
+jobs:
+   test:
     - name: Test with pytest
       run: |
-        python -m pytest --cov=src --junitxml=pytest-report.xml /tests
+           python -m pytest --cov=src --junitxml=pytest-report.xml /tests
       env:
-           TEST_ENV: CI
+      TEST_ENV: CI
     - name: Upload Test Results
       uses: actions/upload-artifact@v4
       if: always() # Ensures reports upload even if tests fail
