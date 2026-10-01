@@ -38,9 +38,11 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    -  name: run RDRS Program in the bcakground
-       shell: bash
-       run:  python -m rdrs.app.main &
+    - name: run RDRS Program in the bcakground
+      shell: 'C:\Program Files\Git\bin\bash.exe --noprofile --norc -e -o pipefail {0}'
+      run: |
+         echo "This is running inside Git Bash successfully!"
+         python -m rdrs.app.main &
     - name: Test with pytest
       env:
         PYTHONPATH: rdrs
