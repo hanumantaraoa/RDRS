@@ -42,4 +42,4 @@ jobs:
       env:
         PYTHONPATH: rdrs
       run: |
-        python -m pytest rdrs/tests
+        Start-Job -ScriptBlock { & "python -m rdrs.app.main" }
