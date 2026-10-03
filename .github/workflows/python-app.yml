@@ -49,6 +49,7 @@ jobs:
         python rdrs/tests/test_atak.py
     - name: Modify index.html
       run:  |
+          python rdrs/app/dashboard/dashboard.py
           git config --global hanumantaraoa.hanumantaraoa "github-actions[bot]"
           git config --global hanumantaraoa.hanumantaraoa@gmail.com "github-actions[bot]@://github.com"
           git add index.html
