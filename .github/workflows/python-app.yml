@@ -47,3 +47,17 @@ jobs:
       run: |
         python -m pytest rdrs/tests
         python rdrs/tests/test_atak.py
+    - name: Modify index.html
+      run:  |
+          git config --global hanumantaraoa "github-actions[bot]"
+          git config --global hanumantaraoa@gmail.com "github-actions[bot]@://github.com"
+          git add index.html
+          
+          # Check if there are changes staged for commit
+          git diff --quiet --staged
+          if ($LASTEXITCODE -ne 0) {
+              git commit -m "Update index.html"
+              git push
+          } else {
+              Write-Output "No changes to commit."
+          }
