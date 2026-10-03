@@ -46,4 +46,4 @@ jobs:
         PYTHONPATH: rdrs
       run: |
         python -m pytest rdrs/tests
-        python -m rdrs/tests/test_atak.py
+        python rdrs/tests/test_atak.py
