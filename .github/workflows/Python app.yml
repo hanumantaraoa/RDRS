@@ -41,3 +41,19 @@ jobs:
         PYTHONPATH: rdrs
       run: |
        python -m pytest rdrs/tests/
+    - name: Modify index.html
+      run: |
+          # Example: Update a timestamp or run a script/command
+          echo "Last updated: $(date)" > timestamp.txt
+          # Or inject/replace content in index.html:
+          sed -i 's/Last run: .*/Last run: $(date)/g' index.html
+          # Or run your custom script/generator:
+          # python generate_html.py
+
+    - name: Auto-commit index.html
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+          file_pattern: index.html
+          commit_message: "Auto-update index.html via workflow"
+          commit_hanumantaraoa: github-actions[bot]
+          commit_hanumantaraoa@gmail.com: 41898282+github-actions[bot]@users.noreply.github.com
