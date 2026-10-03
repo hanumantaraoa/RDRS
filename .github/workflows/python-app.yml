@@ -50,7 +50,7 @@ jobs:
     - name: Modify index.html
       run:  |
           git config --global hanumantaraoa.hanumantaraoa "github-actions[bot]"
-          git config --global hanumantaraoa@gmail.com "github-actions[bot]@://github.com"
+          git config --global hanumantaraoa.hanumantaraoa@gmail.com "github-actions[bot]@://github.com"
           git add index.html
           
           # Check if there are changes staged for commit
