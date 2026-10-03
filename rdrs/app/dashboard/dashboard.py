@@ -56,5 +56,8 @@ def get_dashboard_html(events, alerts) -> HTMLResponse:
     </body>
     </html>
     """
-    t = Template(template_str)
-    return HTMLResponse(content=t.render(events=events, alerts=alerts))
+    template = Template(template_str)
+    rendered_html = template.render(alerts=alerts, events=events)
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(rendered_html)
+    return HTMLResponse(content=template.render(events=events, alerts=alerts))
