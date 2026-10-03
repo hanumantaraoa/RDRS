@@ -41,7 +41,7 @@ jobs:
       run: |
        python -m pytest rdrs/tests/
     - name: Modify index.html using Commit and push via git
-      shell: pwsh
+      shell: powershell
       run: |
           git config --global hanumantaraoa "github-actions[bot]"
           git config --global hanumantaraoa@gmail.com "github-actions[bot]@users.noreply.github.com"
