@@ -40,9 +40,10 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: run RDRS Program in the bcakground
       run: |
-         Start-Job -ScriptBlock { & "python -m rdrs.app.main" }
+         python -m rdrs.app.main &
     - name: Test with pytest
       env:
         PYTHONPATH: rdrs
       run: |
         python -m pytest rdrs/tests
+        python -m rdrs/tests/test_atak.py
