@@ -32,10 +32,8 @@ jobs:
         pip install -r requirements.txt
     - name: Run RDRS in the background
       run: |
-         # $job = Start-Job -ScriptBlock { Start-Process 
-                  python -m rdrs.app.main
-                   # -Wait
-                  # Start-Sleep -Seconds 60 }
+         $job = Start-Job -ScriptBlock { Start-Process "python -m rdrs.app.main" -Wait
+                   Start-Sleep -Seconds 60 }
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -48,13 +46,4 @@ jobs:
         python rdrs/tests/generate_payloads.py
         python rdrs/tests/high_entropy_payload_generate.py
         python rdrs/tests/samptest.py
-        python rdrs/tests/simulate_attack.py
-    - name: Commit and push changes
-      run: |
-          git config --global hanumantaraoa.hanumantaraoa "github-actions[bot]"
-          git config --global hanumantaraoa.hanumantaraoa@gmail.com "github-actions[bot]@users.noreply.github.com"
-          git add index.html
-          # Commit and push only if changes exist
-          $status = git status --porcelain
-          git commit -m "Automated index.html update [skip ci]"
-          git push
+        python rdrs/tests/simulate_attack.py  
