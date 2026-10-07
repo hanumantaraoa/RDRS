@@ -49,8 +49,16 @@ jobs:
         python rdrs/tests/simulate_attack.py
     - name: Commit and push changes
       run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global hanumantaraoa.hanumantaraoa "github-actions[bot]"
+          git config --global hanumantaraoa.hanumantaraoa@gmail.com "github-actions[bot]@users.noreply.github.com"
+          git status
           git add index.html
-          git commit -m "Auto-update index.html [skip ci]" || exit 0
-          git push
+        
+          # Commit and push only if changes exist
+          $status = git status --porcelain
+          if ($status) {
+            git commit -m "Automated index.html update [skip ci]"
+            git push
+           } else {
+            Write-Output "No changes detected in index.html"
+            }
