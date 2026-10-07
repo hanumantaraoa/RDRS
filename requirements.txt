@@ -1,0 +1,13 @@
+watchdog
+psutil
+pydantic
+pyyaml
+loguru
+sqlalchemy
+fastapi
+uvicorn
+reportlab
+jinja2
+pytest
+pytest-cov
+requests

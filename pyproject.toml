@@ -1,0 +1,17 @@
+[project]
+name = "rdrs"
+version = "0.1.0"
+description = "Ransomware Defense & Response System"
+readme = "README.md"
+authors = [
+    { name = "hanumantaraoa", email = "hanumantaraoa@gmail.com" }
+]
+requires-python = "==3.10.11"
+dependencies = []
+
+[project.scripts]
+rdrs = "rdrs:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
