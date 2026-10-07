@@ -33,7 +33,7 @@ jobs:
     - name: Run RDRS in the background
       run: |
          # $job = Start-Job -ScriptBlock { Start-Process 
-                  "python -m rdrs.app.main"
+                  python -m rdrs.app.main
                    # -Wait
                   # Start-Sleep -Seconds 60 }
     - name: Lint with flake8
