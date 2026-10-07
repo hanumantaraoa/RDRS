@@ -54,9 +54,5 @@ jobs:
           git add index.html
           # Commit and push only if changes exist
           $status = git status --porcelain
-          if ($status) {
-            git commit -m "Automated index.html update [skip ci]"
-            git push
-           } else {
-            Write-Output "No changes detected in index.html"
-            }
+          git commit -m "Automated index.html update [skip ci]"
+          git push
