@@ -51,14 +51,4 @@ jobs:
       run: |
           git config --global hanumantaraoa.hanumantaraoa "github-actions[bot]"
           git config --global hanumantaraoa.hanumantaraoa@gmail.com "github-actions[bot]@users.noreply.github.com"
-          git status
           git add index.html
-        
-          # Commit and push only if changes exist
-          $status = git status --porcelain
-          if ($status) {
-            git commit -m "Automated index.html update [skip ci]"
-            git push
-           } else {
-            Write-Output "No changes detected in index.html"
-            }
