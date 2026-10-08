@@ -1,0 +1,38 @@
+rdrs/
+├── config.yaml
+├── requirements.txt
+├── Dockerfile
+├── docker-compose.yml
+├── Readme.md
+├── data/
+├── logs/
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   ├── logging.py
+│   │   ├── entropy.py
+│   │   └── models.py
+│   ├── detectors/
+│   │   ├── __init__.py
+│   │   ├── monitor.py
+│   │   └── engine.py
+│   ├── database/
+│   │   ├── __init__.py
+│   │   └── connection.py
+│   ├── api/
+│   │   ├── __init__.py
+│   │   └── routes.py
+│   ├── dashboard/
+│   │   ├── __init__.py
+│   │   ├── server.py
+│   │   └── templates/
+│   │       └── index.html
+│   └── reports/
+│       ├── __init__.py
+│       └── generator.py
+└── tests/
+    ├── __init__.py
+    └── test_detector.py

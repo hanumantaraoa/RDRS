@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RDRS SecOps Command Center</title>
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <style>
+        body { background-color: #121212; color: #e0e0e0; }
+        .card { background-color: #1e1e1e; border: 1px solid #292929; color: #fff; }
+        .badge-critical { background-color: #dc3545; }
+        .badge-warning { background-color: #ffc107; color: #000; }
+        .badge-normal { background-color: #198754; }
+    </style>
+    <script>
+        setInterval(() => { window.location.reload(); }, 3000);
+    </script>
+</head>
+<body>
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>? RDRS Security Dashboard Log</h2>
+        <span class="fs-4 px-3 py-1 rounded badge {% if threat_level == 'Critical' %}badge-critical{% elif threat_level == 'Warning' %}badge-warning{% else %}badge-normal{% endif %}">
+            Status Level: {{ threat_level }}
+        </span>
+    </div>
+    
+    <div class="row g-4 mb-4">
+        <div class="col-md-6">
+            <div class="card p-3 shadow-sm">
+                <h5>System Metrics Monitoring Line</h5>
+                <p class="fs-3 text-info">Host Core CPU: {{ cpu_usage }}%</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <h4>Recent Threat Signals</h4>
+            {% for a in alerts %}
+            <div class="card p-2 mb-2"><strong>[{{ a.severity_level }}]</strong> Score: {{ a.threat_score }}% - {{ a.description }}</div>
+            {% endfor %}
+        </div>
+        <div class="col-md-6">
+            <h4>Live Raw Telemetry Events Log</h4>
+            {% for e in events %}
+            <div class="card p-2 mb-2">{{ e.timestamp }} | action: {{ e.event_type }} -> {{ e.src_path }}</div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+server:
+  host: "0.0.0.0"
+  port: 8000
+
+monitor:
+  watch_paths: 
+    - "./data/sandbox"
+  quarantine_path: "./data/quarantine"
+  entropy_threshold: 6.5
+  window_seconds: 10
+  max_events_per_window: 15
+  cpu_spike_threshold: 75.0
+  simulation_mode: true
+
+weights:
+  rapid_encryption: 40.0
+  mass_rename: 30.0
+  high_entropy: 25.0
+  cpu_spike: 15.0
+  unknown_program: 10.0

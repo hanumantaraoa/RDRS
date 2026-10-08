@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  rdrs-app:
+    build: .
+    container_name: rdrs_container
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/rdrs/data
+      - ./logs:/rdrs/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
