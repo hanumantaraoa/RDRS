@@ -32,7 +32,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run RDRS in the background
       run: |
-         $job = Start-Job -ScriptBlock { Start-Process "python -m rdrs.app.main" -Wait
+         $job = Start-Job -ScriptBlock { Start-Process "python -m app.main" -Wait
                    Start-Sleep -Seconds 60 }
     - name: Lint with flake8
       run: |
@@ -42,8 +42,6 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        python -m  pytest rdrs/tests
-        python rdrs/tests/generate_payloads.py
-        python rdrs/tests/high_entropy_payload_generate.py
+        python -m  pytest tests
         python rdrs/tests/samptest.py
         # python rdrs/tests/simulate_attack.py  
