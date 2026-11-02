@@ -18,7 +18,7 @@ permissions:
 jobs:
   test-and-build:
     name: Run Telemetry Suite and Compile Static Assets
-    runs-on: self-hosted
+    runs-on: ubuntu-slim
     
     steps:
     
