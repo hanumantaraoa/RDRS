@@ -104,21 +104,43 @@ jobs:
             .then(data => {
                 // Generate the list items from alerts, fallback if empty
                 const alertsList = data.alerts && data.alerts.length > 0 
-                    ? data.alerts.map(a => `<li>Score: ${a.score} | Process: ${a.process} | Description: ${a.desc}</li>`).join('')
-                    : '<li>No active alerts recorded</li>';
+    ? data.alerts.map(a => `
+        <tr>
+            <td>${a.score}</td>
+            <td>${a.process}</td>
+            <td>${a.desc}</td>
+        </tr>
+    `).join('') 
+    : '<tr><td>No active alerts recorded</td></tr>';
+	
 
-                document.getElementById('view').innerHTML = `
-                    <p><b>Last Status Synchronization:</b> ${data.last_updated}</p>
-                    <p><b>Total Sandbox Operations Logged:</b> ${data.total_events}</p>
-                    <h3>Recent System Alert Logs</h3>
-                    <ul>${alertsList}</ul>
-                `;
-            })
-            .catch(e => {
-                console.error(e);
-                document.getElementById('view').innerText = 'Telemetry dataset payload unavailable';
-            });
-        </script>
+// 2. Inject the data into the 'view' container using a semantic table structure
+document.getElementById('view').innerHTML = `
+    <p><b>Last Status Synchronization:</b> ${data.last_updated}</p>
+    <p><b>Total Sandbox Operations Logged:</b> ${data.total_events}</p>
+    
+		<h2>⚠️ Security Countermeasures Alerts Logs</h2>
+		<table>
+            <thead>
+			<tr>
+                <th>Score</th>
+                <th>Process</th>
+                <th>Description</th>
+            </tr>
+			</thead>
+        
+        ${alertsList}
+        
+		</table>
+`		;
+		})
+		.catch(e => {
+			console.error(e);
+			document.getElementById('view').innerText = 'Telemetry dataset payload unavailable';
+		});
+		</script>
+
+
         </body>
         </html>
 
